@@ -318,8 +318,8 @@ body {
 .peeker--left  { left: 0; right: auto; transform: translateX(-100%) rotate(-8deg); }
 .peeker--right { left: auto; right: 0; transform: translateX(100%) scaleX(-1) rotate(-8deg); }
 
-.peeker--left.is-peek  { transform: translateX(-16%) rotate(4deg); }
-.peeker--right.is-peek { transform: translateX(16%) scaleX(-1) rotate(4deg); }
+.peeker--left.is-peek  { transform: translateX(-3%) rotate(4deg); }
+.peeker--right.is-peek { transform: translateX(3%) scaleX(-1) rotate(4deg); }
 
 .peeker.is-peek svg { animation: peek-wiggle 1.7s ease-in-out infinite; }
 

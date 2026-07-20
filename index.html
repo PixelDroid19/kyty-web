@@ -295,13 +295,13 @@
       <!-- Cuerpo (Mascota) -->
       <path fill="var(--mascot-body, #f4f4f5)" d="M0 120 Q26 122 40 132 Q56 152 50 174 Q44 192 22 199 Q6 204 0 196 Z" />
       <!-- Pata Superior -->
-      <path fill="var(--mascot-body, #f4f4f5)" stroke="var(--mascot-accent, #18181b)" stroke-width="1.5" stroke-opacity="0.18" stroke-linecap="round" stroke-linejoin="round" d="M 0 124 A 6.5 6.5 0 0 1 5 133 A 6.5 6.5 0 0 1 5 143 A 6.5 6.5 0 0 1 0 152" />
+      <path fill="var(--mascot-body, #f4f4f5)" stroke="var(--mascot-accent, #18181b)" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round" d="M 0 122 A 10 10 0 0 1 10 132 A 10 10 0 0 1 10 144 A 10 10 0 0 1 0 154" />
       <!-- Pata Inferior -->
-      <path fill="var(--mascot-body, #f4f4f5)" stroke="var(--mascot-accent, #18181b)" stroke-width="1.5" stroke-opacity="0.18" stroke-linecap="round" stroke-linejoin="round" d="M 0 162 A 6.5 6.5 0 0 1 5 171 A 6.5 6.5 0 0 1 5 181 A 6.5 6.5 0 0 1 0 190" />
+      <path fill="var(--mascot-body, #f4f4f5)" stroke="var(--mascot-accent, #18181b)" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round" d="M 0 160 A 10 10 0 0 1 10 170 A 10 10 0 0 1 10 182 A 10 10 0 0 1 0 192" />
       <!-- Cabeza Principal -->
       <g transform="matrix(1 0 0 1 -0.525 17.728)">
         <path fill="var(--mascot-body, #f4f4f5)" d="M0 104 L0 34 Q4 16 30 2 Q42 14 52 28 Q62 32 74 40 Q92 44 108 54 L88 82 Q82 100 62 108 Q42 115 24 108 Q6 106 0 104 Z" />
-        <path stroke="var(--mascot-body, #f4f4f5)" stroke-width="2.4" stroke-linecap="round" fill="none" d="M78 92 L104 99 M74 101 L98 110" />
+        <path stroke="var(--mascot-body, #f4f4f5)" stroke-width="2.4" stroke-linecap="round" fill="none" d="M78 92 L94 96 M74 101 L90 106" />
       </g>
       <!-- Gafas / Detalles Accesorios -->
       <g stroke="var(--mascot-accent, #18181b)" fill="var(--mascot-accent, #18181b)" transform="matrix(0.9705 0 0 1.023 -41.644 -41.583)">
@@ -310,11 +310,14 @@
       </g>
       <!-- Ojos Reactivos y Dinamicos -->
       <g id="mascot-peeker-eyes" class="animate-blink" fill="var(--mascot-eyes, #5b8cff)" style="transform-origin: 32px 88px; transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);">
-        <rect x="14" y="80" width="8" height="15" rx="4" transform="rotate(-12 18 87.5)" />
-        <rect x="42" y="84" width="8" height="15" rx="4" transform="rotate(-12 46 91.5)" />
+        <rect x="14" y="80" width="8" height="15" rx="4" />
+        <rect x="42" y="84" width="8" height="15" rx="4" />
       </g>
     </svg>
   </div>
+
+  <!-- DEBUG: Temporary button to force peeker (REMOVE LATER) -->
+  <button id="debug-peek-btn" style="position:fixed;bottom:12px;right:12px;z-index:9999;padding:8px 16px;background:#5b8cff;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;opacity:0.85;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="(() => { const el = document.getElementById('peeker'); el.classList.remove('peeker--left','peeker--right','is-peek'); void el.offsetWidth; el.classList.add('peeker--left'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('is-peek'))); setTimeout(() => el.classList.remove('is-peek'), 8000); })();">🐱 Peek!</button>
 
   <script src="assets/js/config.js"></script>
   <script src="assets/js/i18n.js"></script>

@@ -309,18 +309,34 @@
         <circle cx="56.3" cy="171" r="3.5" />
       </g>
       <!-- Ojos Reactivos y Dinamicos -->
-      <g id="mascot-peeker-eyes" class="animate-blink" fill="var(--mascot-eyes, #5b8cff)" style="transform-origin: 32px 88px; transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);">
-        <rect x="14" y="80" width="8" height="15" rx="4" />
-        <rect x="42" y="84" width="8" height="15" rx="4" />
+      <g id="mascot-peeker-eyes" fill="var(--mascot-eyes, #5b8cff)" style="transform-origin: 32px 89px; transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);">
+        <g class="animate-blink" style="transform-origin: 32px 89px;">
+          <rect x="14" y="80" width="8" height="15" rx="4" />
+          <rect x="42" y="84" width="8" height="15" rx="4" />
+        </g>
       </g>
     </svg>
   </div>
 
-  <!-- DEBUG: Temporary button to force peeker (REMOVE LATER) -->
-  <button id="debug-peek-btn" style="position:fixed;bottom:12px;right:12px;z-index:9999;padding:8px 16px;background:#5b8cff;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;opacity:0.85;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="(() => { const el = document.getElementById('peeker'); el.classList.remove('peeker--left','peeker--right','is-peek'); void el.offsetWidth; el.classList.add('peeker--left'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('is-peek'))); setTimeout(() => el.classList.remove('is-peek'), 8000); })();">🐱 Peek!</button>
-
   <script src="assets/js/config.js"></script>
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    // Demo: los ojos del peeker siguen al cursor (demuestra que el grupo rota/traslada libremente)
+    (function () {
+      const eyes = document.getElementById('mascot-peeker-eyes');
+      if (!eyes) return;
+      document.addEventListener('mousemove', (e) => {
+        const rect = eyes.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const angle = Math.atan2(e.clientY - cy, e.clientX - cx);
+        const dist = Math.min(Math.hypot(e.clientX - cx, e.clientY - cy) / 80, 4);
+        const x = Math.cos(angle) * dist;
+        const y = Math.sin(angle) * dist;
+        eyes.style.transform = `translate(${x}px, ${y}px) rotate(${angle * 0.15}deg)`;
+      });
+    })();
+  </script>
 </body>
 </html>

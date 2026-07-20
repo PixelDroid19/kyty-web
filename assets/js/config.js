@@ -10,6 +10,7 @@ const SITE_CONFIG = {
 
   // Emulator repository (where visitors are sent to star / contribute).
   repoUrl: "https://github.com/PixelDroid19/Kyty",
+  upstreamUrl: "https://github.com/InoriRus/Kyty",
 
   // Gallery: drop your captures into /screenshots and add entries here.
   // Example:

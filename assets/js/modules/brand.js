@@ -14,6 +14,9 @@ function applyBrand() {
   document.querySelectorAll("[data-repo-link]").forEach((el) => {
     el.href = SITE_CONFIG.repoUrl;
   });
+  document.querySelectorAll("[data-upstream-link]").forEach((el) => {
+    el.href = SITE_CONFIG.upstreamUrl;
+  });
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 }

@@ -11,8 +11,8 @@ const I18N = {
     "nav.contribute": "Contribute",
 
     "hero.badge": "EXPERIMENTAL · WORK IN PROGRESS",
-    "hero.sub1": "An open-source",
-    "hero.sub2": "emulator pushing Sony's next-gen console onto your PC — instruction by instruction, frame by frame.",
+    "hero.sub1": "A community fork of the open-source",
+    "hero.sub2": "PlayStation® 5 emulator, pushing Sony's next-gen console onto your PC — instruction by instruction, frame by frame.",
     "hero.petHint": "↑ pet him",
     "hero.petAria": "Pet Kit, the mascot",
     "hero.milestone": "LATEST MILESTONE",
@@ -71,8 +71,8 @@ const I18N = {
     "contrib.i4d": "Strict methodology: evidence before code, one frontier at a time.",
 
     "legal.kicker": "// NOTICE",
-    "legal.disclaimer": "<strong>Kyty</strong> is a free, open-source research project licensed under <strong>MIT</strong>. It is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. \"PlayStation\" and \"PS5\" are trademarks of Sony Interactive Entertainment Inc. No games, firmware, keys or BIOS files are distributed.",
-    "footer.legal": "Kyty is a free, open-source research project licensed under MIT. It is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. \"PlayStation\" and \"PS5\" are trademarks of Sony Interactive Entertainment Inc. No games, firmware, keys or BIOS files are distributed.",
+    "legal.disclaimer": "<strong>Kyty</strong> is an open-source community fork of the PS4/PS5 research emulator by InoriRus, licensed under <strong>MIT</strong>. It is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. \"PlayStation\" and \"PS5\" are trademarks of Sony Interactive Entertainment Inc. No games, firmware, keys or BIOS files are distributed.",
+    "footer.legal": "Kyty is an open-source community fork of the PS4/PS5 research project by InoriRus, licensed under MIT. It is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. \"PlayStation\" and \"PS5\" are trademarks of Sony Interactive Entertainment Inc. No games, firmware, keys or BIOS files are distributed.",
     "footer.upstream": "Upstream project",
     "footer.made": "Built by the Kyty community",
   },
@@ -84,8 +84,8 @@ const I18N = {
     "nav.contribute": "Contribuir",
 
     "hero.badge": "EXPERIMENTAL · EN DESARROLLO",
-    "hero.sub1": "Un emulador de",
-    "hero.sub2": "de código abierto que lleva la consola de nueva generación de Sony a tu PC — instrucción a instrucción, frame a frame.",
+    "hero.sub1": "Un fork comunitario del emulador de código abierto para",
+    "hero.sub2": "PlayStation® 5 que lleva la consola de nueva generación de Sony a tu PC — instrucción a instrucción, frame a frame.",
     "hero.petHint": "↑ acarícialo",
     "hero.petAria": "Acaricia a Kit, la mascota",
     "hero.milestone": "ÚLTIMO HITO",
@@ -144,8 +144,8 @@ const I18N = {
     "contrib.i4d": "Metodología estricta: evidencia antes que código, una frontera a la vez.",
 
     "legal.kicker": "// AVISO LEGAL",
-    "legal.disclaimer": "<strong>Kyty</strong> es un proyecto de investigación libre y de código abierto bajo licencia <strong>MIT</strong>. No está afiliado, respaldado ni patrocinado por Sony Interactive Entertainment. \"PlayStation\" y \"PS5\" son marcas registradas de Sony Interactive Entertainment Inc. No se distribuyen juegos, firmware, claves ni archivos BIOS.",
-    "footer.legal": "Kyty es un proyecto de investigación libre y de código abierto bajo licencia MIT. No está afiliado, respaldado ni patrocinado por Sony Interactive Entertainment. \"PlayStation\" y \"PS5\" son marcas registradas de Sony Interactive Entertainment Inc. No se distribuyen juegos, firmware, claves ni archivos BIOS.",
+    "legal.disclaimer": "<strong>Kyty</strong> es un fork comunitario de código abierto del emulador de investigación PS4/PS5 de InoriRus, bajo licencia <strong>MIT</strong>. No está afiliado, respaldado ni patrocinado por Sony Interactive Entertainment. \"PlayStation\" y \"PS5\" son marcas registradas de Sony Interactive Entertainment Inc. No se distribuyen juegos, firmware, claves ni archivos BIOS.",
+    "footer.legal": "Kyty es un fork comunitario de código abierto del proyecto de investigación PS4/PS5 de InoriRus, bajo licencia MIT. No está afiliado, respaldado ni patrocinado por Sony Interactive Entertainment. \"PlayStation\" y \"PS5\" son marcas registradas de Sony Interactive Entertainment Inc. No se distribuyen juegos, firmware, claves ni archivos BIOS.",
     "footer.upstream": "Proyecto original",
     "footer.made": "Construido por la comunidad Kyty",
   },

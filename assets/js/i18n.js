@@ -70,6 +70,8 @@ const I18N = {
     "contrib.i4t": "Read the engineering guide",
     "contrib.i4d": "Strict methodology: evidence before code, one frontier at a time.",
 
+    "legal.kicker": "// NOTICE",
+    "legal.disclaimer": "<strong>Kyty</strong> is a free, open-source research project licensed under <strong>MIT</strong>. It is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. \"PlayStation\" and \"PS5\" are trademarks of Sony Interactive Entertainment Inc. No games, firmware, keys or BIOS files are distributed.",
     "footer.legal": "Kyty is a free, open-source research project licensed under MIT. It is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. \"PlayStation\" and \"PS5\" are trademarks of Sony Interactive Entertainment Inc. No games, firmware, keys or BIOS files are distributed.",
     "footer.upstream": "Upstream project",
     "footer.made": "Built by the Kyty community",
@@ -141,6 +143,8 @@ const I18N = {
     "contrib.i4t": "Lee la guía de ingeniería",
     "contrib.i4d": "Metodología estricta: evidencia antes que código, una frontera a la vez.",
 
+    "legal.kicker": "// AVISO LEGAL",
+    "legal.disclaimer": "<strong>Kyty</strong> es un proyecto de investigación libre y de código abierto bajo licencia <strong>MIT</strong>. No está afiliado, respaldado ni patrocinado por Sony Interactive Entertainment. \"PlayStation\" y \"PS5\" son marcas registradas de Sony Interactive Entertainment Inc. No se distribuyen juegos, firmware, claves ni archivos BIOS.",
     "footer.legal": "Kyty es un proyecto de investigación libre y de código abierto bajo licencia MIT. No está afiliado, respaldado ni patrocinado por Sony Interactive Entertainment. \"PlayStation\" y \"PS5\" son marcas registradas de Sony Interactive Entertainment Inc. No se distribuyen juegos, firmware, claves ni archivos BIOS.",
     "footer.upstream": "Proyecto original",
     "footer.made": "Construido por la comunidad Kyty",

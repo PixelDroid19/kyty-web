@@ -4,6 +4,7 @@
    ============================================================ */
 
 @import url("components/base.css");
+@import url("components/disclaimer.css");
 @import url("components/nav.css");
 @import url("components/buttons.css");
 @import url("components/mascot.css");

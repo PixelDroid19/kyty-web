@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KYTY — PlayStation 5 Emulator</title>
+  <meta name="description" content="Kyty is an experimental open-source PlayStation 4/5 emulator. Dead Cells is playable. Vulkan renderer, MIT licensed, Linux · macOS · Windows." />
+  <meta property="og:title" content="KYTY — PlayStation 5 Emulator" />
+  <meta property="og:description" content="Experimental open-source PS4/PS5 emulator. Dead Cells is playable. Help us push compatibility further." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pixeldroid19.github.io/kyty-web/" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- ===== Background FX ===== -->
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+  <div class="grid-horizon" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ===== Navbar ===== -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top">
+      <img src="assets/img/logo.svg" alt="" class="nav__logo" />
+      <span class="nav__name" data-site-name>KYTY</span>
+      <span class="nav__tag">PS5 EMU</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#now-running" data-i18n="nav.games">Games</a>
+      <a href="#compatibility" data-i18n="nav.compat">Compatibility</a>
+      <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
+      <a href="#contribute" data-i18n="nav.contribute">Contribute</a>
+    </nav>
+    <div class="nav__actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="en">EN</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <a class="btn btn--ghost btn--sm" data-repo-link href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__badge reveal">
+          <span class="pulse-dot"></span>
+          <span data-i18n="hero.badge">EXPERIMENTAL · WORK IN PROGRESS</span>
+        </div>
+        <h1 class="hero__title reveal" data-site-name-glitch data-text="KYTY">KYTY</h1>
+        <p class="hero__sub reveal">
+          <span data-i18n="hero.sub1">An open-source</span>
+          <strong> PlayStation<sup>®</sup>5 </strong>
+          <span data-i18n="hero.sub2">emulator pushing Sony's next-gen console onto your PC — instruction by instruction, frame by frame.</span>
+        </p>
+        <div class="hero__status reveal">
+          <div class="status-card">
+            <span class="status-card__label" data-i18n="hero.milestone">LATEST MILESTONE</span>
+            <span class="status-card__game">DEAD CELLS</span>
+            <span class="status-card__state status-playable" data-i18n="status.playable">PLAYABLE</span>
+          </div>
+        </div>
+        <div class="hero__cta reveal">
+          <a class="btn btn--primary" href="#compatibility">
+            <span data-i18n="hero.cta1">Check Compatibility</span>
+          </a>
+          <a class="btn btn--outline" data-repo-link href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
+            <span data-i18n="hero.cta2">Star on GitHub</span>
+          </a>
+        </div>
+        <div class="hero__chips reveal">
+          <span class="chip">Vulkan</span>
+          <span class="chip">Linux</span>
+          <span class="chip">macOS</span>
+          <span class="chip">Windows</span>
+          <span class="chip">MIT License</span>
+          <span class="chip">C++ / SPIR-V</span>
+        </div>
+      </div>
+      <a class="hero__scroll" href="#now-running" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ===== Now Running ===== -->
+    <section class="section" id="now-running">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-i18n="running.kicker">// NOW RUNNING</span>
+        <h2 class="section__title" data-i18n="running.title">Booted. Rendered. <em>Played.</em></h2>
+        <p class="section__desc" data-i18n="running.desc">Real games running on real emulated hardware — no shortcuts, no faked frames. Every milestone below was reached through strict, evidence-backed emulation work.</p>
+      </div>
+      <div class="game-feature reveal">
+        <div class="game-feature__frame" data-screenshot-slot="dead-cells">
+          <!-- Replace with: <img src="screenshots/dead-cells-01.png" alt="Dead Cells running on Kyty" /> -->
+          <div class="shot-placeholder">
+            <div class="shot-placeholder__hud">
+              <span class="shot-placeholder__rec">● CAPTURE SLOT</span>
+                              <span data-i18n="running.shotSoon">SCREENSHOT COMING SOON</span>
+            </div>
+            <div class="shot-placeholder__art"></div>
+          </div>
+          <span class="game-feature__status status-playable" data-i18n="status.playable">PLAYABLE</span>
+        </div>
+        <div class="game-feature__info">
+          <h3>Dead Cells</h3>
+          <p class="game-feature__genre" data-i18n="running.dcGenre">Roguelite · Action-Platformer · Motion Twin</p>
+          <p data-i18n="running.dcBody">The first title to break through the full pipeline: Vulkan device creation, Gen5 shader translation, indexed draws, VideoOut presentation, menus, loading and sustained gameplay-era frames under strict flags — no cheats, no permissive skips.</p>
+          <ul class="game-feature__facts">
+            <li><span data-i18n="running.f1k">Renderer</span><b>Vulkan · Swapchain present</b></li>
+            <li><span data-i18n="running.f2k">Shaders</span><b data-i18n="running.f2v">Gen5 → SPIR-V translation</b></li>
+            <li><span data-i18n="running.f3k">Status</span><b data-i18n="running.f3v">Gameplay-era frames sustained</b></li>
+            <li><span data-i18n="running.f4k">Input</span><b data-i18n="running.f4v">Keyboard / controller edges</b></li>
+          </ul>
+          <p class="game-feature__note" data-i18n="running.note">More titles enter testing as the emulator core matures. Yours could be next — report results on GitHub.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Compatibility ===== -->
+    <section class="section" id="compatibility">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-i18n="compat.kicker">// GAME COMPATIBILITY</span>
+        <h2 class="section__title" data-i18n="compat.title">What runs today?</h2>
+        <p class="section__desc" data-i18n="compat.desc">Kyty is young. This list tracks verified, strict-run results only — no guesses, no inflated claims. Help us grow it by testing and reporting.</p>
+      </div>
+
+      <div class="compat-legend reveal">
+        <span class="tag status-playable" data-i18n="status.playable">PLAYABLE</span>
+        <span class="tag status-ingame" data-i18n="status.ingame">IN-GAME</span>
+        <span class="tag status-intro" data-i18n="status.intro">INTRO/MENUS</span>
+        <span class="tag status-nothing" data-i18n="status.nothing">NOTHING</span>
+        <span class="tag status-untested" data-i18n="status.untested">UNTESTED</span>
+      </div>
+
+      <div class="compat-toolbar reveal">
+        <input type="search" id="compat-search" class="compat-search" data-i18n-ph="compat.search" placeholder="Search a game…" />
+        <div class="compat-filters" id="compat-filters">
+          <button class="filter-btn is-active" data-filter="all" data-i18n="compat.all">All</button>
+          <button class="filter-btn" data-filter="playable" data-i18n="status.playable">Playable</button>
+          <button class="filter-btn" data-filter="ingame" data-i18n="status.ingame">In-Game</button>
+          <button class="filter-btn" data-filter="intro" data-i18n="status.intro">Intro</button>
+          <button class="filter-btn" data-filter="nothing" data-i18n="status.nothing">Nothing</button>
+        </div>
+      </div>
+
+      <div class="compat-table-wrap reveal">
+        <table class="compat-table" id="compat-table">
+          <thead>
+            <tr>
+              <th data-i18n="compat.colGame">Game</th>
+              <th data-i18n="compat.colStatus">Status</th>
+              <th data-i18n="compat.colNotes">Notes</th>
+              <th data-i18n="compat.colTested">Tested build</th>
+            </tr>
+          </thead>
+          <tbody id="compat-body"><!-- built by JS from COMPAT_DATA --></tbody>
+        </table>
+        <p class="compat-empty" id="compat-empty" hidden data-i18n="compat.empty">No results. This title hasn't been tested yet — be the first to report it!</p>
+      </div>
+
+      <div class="compat-cta reveal">
+        <p data-i18n="compat.ctaText">Tested a game that's not listed? Open an issue with your hardware, OS and result.</p>
+        <a class="btn btn--primary btn--sm" href="https://github.com/PixelDroid19/Kyty/issues" target="_blank" rel="noopener" data-i18n="compat.ctaBtn">Report a result</a>
+      </div>
+    </section>
+
+    <!-- ===== Gallery ===== -->
+    <section class="section" id="gallery">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-i18n="gallery.kicker">// CAPTURES</span>
+        <h2 class="section__title" data-i18n="gallery.title">Frames from the frontier</h2>
+        <p class="section__desc" data-i18n="gallery.desc">In-emulator captures, straight from the Vulkan swapchain. New shots land as compatibility grows.</p>
+      </div>
+      <div class="gallery-grid reveal" id="gallery-grid"><!-- built by JS from SITE_CONFIG.gallery --></div>
+    </section>
+
+    <!-- ===== Contribute ===== -->
+    <section class="section section--cta" id="contribute">
+      <div class="cta-card reveal">
+        <div class="cta-card__glow"></div>
+        <span class="section__kicker" data-i18n="contrib.kicker">// JOIN THE FRONTIER</span>
+        <h2 class="cta-card__title" data-i18n="contrib.title">Emulators are built by communities.</h2>
+        <p class="cta-card__desc" data-i18n="contrib.desc">Kyty advances one verified frame at a time. Whether you code C++, hunt GPU bugs, test games, or just spread the word — you can push the frontier forward.</p>
+        <div class="cta-grid">
+          <a class="cta-item" data-repo-link href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener">
+            <span class="cta-item__icon">★</span>
+            <b data-i18n="contrib.i1t">Star the repo</b>
+            <span data-i18n="contrib.i1d">Visibility brings contributors. One click helps more than you think.</span>
+          </a>
+          <a class="cta-item" href="https://github.com/PixelDroid19/Kyty/issues" target="_blank" rel="noopener">
+            <span class="cta-item__icon">⚑</span>
+            <b data-i18n="contrib.i2t">Report compatibility</b>
+            <span data-i18n="contrib.i2d">Boot your games, note what happens, file an issue with evidence.</span>
+          </a>
+          <a class="cta-item" href="https://github.com/PixelDroid19/Kyty/fork" target="_blank" rel="noopener">
+            <span class="cta-item__icon">⌥</span>
+            <b data-i18n="contrib.i3t">Fork &amp; contribute</b>
+            <span data-i18n="contrib.i3d">HLE exports, GPU parsing, SPIR-V, kernel — pick a seam and PR.</span>
+          </a>
+          <a class="cta-item" href="https://github.com/PixelDroid19/Kyty/blob/master/AGENTS.md" target="_blank" rel="noopener">
+            <span class="cta-item__icon">✦</span>
+            <b data-i18n="contrib.i4t">Read the engineering guide</b>
+            <span data-i18n="contrib.i4d">Strict methodology: evidence before code, one frontier at a time.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/logo.svg" alt="" class="nav__logo" />
+        <span data-site-name>KYTY</span>
+      </div>
+      <p class="footer__legal" data-i18n="footer.legal">Kyty is a free, open-source research project licensed under MIT. It is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. "PlayStation" and "PS5" are trademarks of Sony Interactive Entertainment Inc. No games, firmware, keys or BIOS files are distributed.</p>
+      <div class="footer__links">
+        <a data-repo-link href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/PixelDroid19/Kyty/issues" target="_blank" rel="noopener">Issues</a>
+        <a href="https://github.com/InoriRus/Kyty" target="_blank" rel="noopener" data-i18n="footer.upstream">Upstream project</a>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> <span data-i18n="footer.made">Built by the Kyty community</span></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

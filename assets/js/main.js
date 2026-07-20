@@ -278,10 +278,20 @@ function initPeeker() {
 
   function peek() {
     const side = Math.random() < 0.5 ? "left" : "right";
-    el.classList.remove("peeker--left", "peeker--right", "is-peek");
-    void el.offsetWidth; // restart transition
+
+    // 1. Ensure no peek class and remove old side
+    el.classList.remove("is-peek", "peeker--left", "peeker--right");
+
+    // 2. Apply the new side class (puts it off-screen)
     el.classList.add(`peeker--${side}`);
-    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("is-peek")));
+
+    // 3. Force the browser to render the off-screen position
+    void el.offsetWidth;
+
+    // 4. Now trigger the slide-in transition
+    el.classList.add("is-peek");
+
+    // 5. After a while, slide back out
     setTimeout(() => {
       el.classList.remove("is-peek");
       setTimeout(schedule, 900); // wait for exit transition before rescheduling

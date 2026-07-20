@@ -12,14 +12,44 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
+  <!-- ===== Mascot shape (single source — instanced with <use>) ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="mascot-shape">
+        <!-- head + ears -->
+        <path fill="currentColor" d="M32 46 L26 18 L52 36 Q60 32 68 36 L94 18 L88 46 Q100 56 100 72 Q100 100 72 106 Q60 109 48 106 Q20 100 20 72 Q20 56 32 46 Z"/>
+        <!-- sitting body with toe bumps -->
+        <path fill="currentColor" d="M30 112 Q18 128 24 143 Q28 152 40 154 L42 154 Q45 159 52 159 Q58 159 60 154 Q62 159 68 159 Q75 159 78 154 L80 154 Q92 152 96 143 Q102 128 90 112 Q76 120 60 120 Q44 120 30 112 Z"/>
+        <!-- tail -->
+        <path stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none" d="M95 138 Q115 135 113 116 Q112 107 103 105"/>
+        <!-- nose, mouth, whiskers -->
+        <path fill="currentColor" d="M56 82 L64 82 L60 87 Z"/>
+        <path stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" d="M60 88 Q59 93 54 93.5 M60 88 Q61 93 66 93.5"/>
+        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.85" d="M14 70 L34 73 M15 82 L34 79.5 M106 70 L86 73 M105 82 L86 79.5"/>
+      </g>
+      <!-- shared extras: collar + bell (per-instance color via CSS) -->
+      <g id="mascot-gear">
+        <path class="mascot__collar" stroke-width="3" stroke-linecap="round" fill="none" d="M40 106 Q60 114 80 106"/>
+        <circle class="mascot__bell" cx="60" cy="116" r="3.5"/>
+      </g>
+      <g id="mascot-eyes-open">
+        <rect x="44" y="62" width="10" height="17" rx="5"/>
+        <rect x="66" y="62" width="10" height="17" rx="5"/>
+      </g>
+      <g id="mascot-eyes-happy">
+        <path stroke-width="3" stroke-linecap="round" fill="none" d="M44 72 Q49 65 54 72"/>
+        <path stroke-width="3" stroke-linecap="round" fill="none" d="M66 72 Q71 65 76 72"/>
+      </g>
+    </defs>
+  </svg>
+
   <!-- ===== Background FX ===== -->
   <canvas id="fx-canvas" aria-hidden="true"></canvas>
-  <div class="grid-horizon" aria-hidden="true"></div>
-  <div class="scanlines" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
   <!-- ===== Navbar ===== -->
   <header class="nav" id="nav">
@@ -41,7 +71,7 @@
         <button class="lang-btn" data-lang="es">ES</button>
       </div>
       <a class="btn btn--ghost btn--sm" data-repo-link href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
         GitHub
       </a>
     </div>
@@ -52,39 +82,51 @@
     <!-- ===== Hero ===== -->
     <section class="hero">
       <div class="hero__inner">
-        <div class="hero__badge reveal">
-          <span class="pulse-dot"></span>
-          <span data-i18n="hero.badge">EXPERIMENTAL · WORK IN PROGRESS</span>
+        <!-- Mascot (pettable — click / hold / drag over him) -->
+        <div class="mascot mascot--hero reveal" id="hero-mascot" role="button" tabindex="0" data-i18n-aria="hero.petAria" aria-label="Pet Kit, the mascot">
+          <svg viewBox="0 0 120 160">
+            <use href="#mascot-shape" class="mascot__layer mascot__layer--r"/>
+            <use href="#mascot-shape" class="mascot__layer mascot__layer--c"/>
+            <use href="#mascot-shape" class="mascot__layer mascot__layer--base"/>
+            <use href="#mascot-gear" class="mascot__gear"/>
+            <use href="#mascot-eyes-open" class="mascot__eyes mascot__eyes--open"/>
+            <use href="#mascot-eyes-happy" class="mascot__eyes mascot__eyes--happy"/>
+          </svg>
+          <span class="purr" aria-hidden="true">purrr…</span>
         </div>
-        <h1 class="hero__title reveal" data-site-name-glitch data-text="KYTY">KYTY</h1>
+        <span class="mascot-hint reveal" id="mascot-hint" data-i18n="hero.petHint">↑ pet him</span>
+
+        <h1 class="hero__title glitch reveal" data-site-name-glitch data-text="KYTY">KYTY</h1>
+
         <p class="hero__sub reveal">
           <span data-i18n="hero.sub1">An open-source</span>
           <strong> PlayStation<sup>®</sup>5 </strong>
           <span data-i18n="hero.sub2">emulator pushing Sony's next-gen console onto your PC — instruction by instruction, frame by frame.</span>
         </p>
-        <div class="hero__status reveal">
-          <div class="status-card">
-            <span class="status-card__label" data-i18n="hero.milestone">LATEST MILESTONE</span>
-            <span class="status-card__game">DEAD CELLS</span>
-            <span class="status-card__state status-playable" data-i18n="status.playable">PLAYABLE</span>
-          </div>
+
+        <div class="hero__badge reveal">
+          <span class="pulse-dot"></span>
+          <span class="hero__badge-label" data-i18n="hero.milestone">LATEST MILESTONE</span>
+          <span class="hero__badge-game">DEAD CELLS</span>
+          <span class="tag tag--playable" data-i18n="status.playable">PLAYABLE</span>
         </div>
+
         <div class="hero__cta reveal">
           <a class="btn btn--primary" href="#compatibility">
             <span data-i18n="hero.cta1">Check Compatibility</span>
           </a>
           <a class="btn btn--outline" data-repo-link href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
             <span data-i18n="hero.cta2">Star on GitHub</span>
           </a>
         </div>
+
         <div class="hero__chips reveal">
           <span class="chip">Vulkan</span>
           <span class="chip">Linux</span>
           <span class="chip">macOS</span>
           <span class="chip">Windows</span>
-          <span class="chip">MIT License</span>
-          <span class="chip">C++ / SPIR-V</span>
+          <span class="chip">MIT</span>
         </div>
       </div>
       <a class="hero__scroll" href="#now-running" aria-label="Scroll down"><span></span></a>
@@ -93,7 +135,7 @@
     <!-- ===== Now Running ===== -->
     <section class="section" id="now-running">
       <div class="section__head reveal">
-        <span class="section__kicker" data-i18n="running.kicker">// NOW RUNNING</span>
+        <span class="section__kicker" data-scramble data-i18n="running.kicker">// NOW RUNNING</span>
         <h2 class="section__title" data-i18n="running.title">Booted. Rendered. <em>Played.</em></h2>
         <p class="section__desc" data-i18n="running.desc">Real games running on real emulated hardware — no shortcuts, no faked frames. Every milestone below was reached through strict, evidence-backed emulation work.</p>
       </div>
@@ -102,12 +144,15 @@
           <!-- Replace with: <img src="screenshots/dead-cells-01.png" alt="Dead Cells running on Kyty" /> -->
           <div class="shot-placeholder">
             <div class="shot-placeholder__hud">
-              <span class="shot-placeholder__rec">● CAPTURE SLOT</span>
-                              <span data-i18n="running.shotSoon">SCREENSHOT COMING SOON</span>
+              <span class="shot-placeholder__rec">● REC</span>
+              <span data-i18n="running.shotSoon">CAPTURE PENDING</span>
             </div>
-            <div class="shot-placeholder__art"></div>
+            <div class="shot-placeholder__core">
+              <span class="shot-placeholder__nosignal glitch-hard" data-text="NO SIGNAL">NO SIGNAL</span>
+            </div>
+            <div class="shot-placeholder__sweep"></div>
           </div>
-          <span class="game-feature__status status-playable" data-i18n="status.playable">PLAYABLE</span>
+          <span class="game-feature__status tag tag--playable" data-i18n="status.playable">PLAYABLE</span>
         </div>
         <div class="game-feature__info">
           <h3>Dead Cells</h3>
@@ -127,17 +172,17 @@
     <!-- ===== Compatibility ===== -->
     <section class="section" id="compatibility">
       <div class="section__head reveal">
-        <span class="section__kicker" data-i18n="compat.kicker">// GAME COMPATIBILITY</span>
-        <h2 class="section__title" data-i18n="compat.title">What runs today?</h2>
+        <span class="section__kicker" data-scramble data-i18n="compat.kicker">// GAME COMPATIBILITY</span>
+        <h2 class="section__title" data-scramble data-i18n="compat.title">What runs today?</h2>
         <p class="section__desc" data-i18n="compat.desc">Kyty is young. This list tracks verified, strict-run results only — no guesses, no inflated claims. Help us grow it by testing and reporting.</p>
       </div>
 
       <div class="compat-legend reveal">
-        <span class="tag status-playable" data-i18n="status.playable">PLAYABLE</span>
-        <span class="tag status-ingame" data-i18n="status.ingame">IN-GAME</span>
-        <span class="tag status-intro" data-i18n="status.intro">INTRO/MENUS</span>
-        <span class="tag status-nothing" data-i18n="status.nothing">NOTHING</span>
-        <span class="tag status-untested" data-i18n="status.untested">UNTESTED</span>
+        <span class="tag tag--playable" data-i18n="status.playable">PLAYABLE</span>
+        <span class="tag tag--ingame" data-i18n="status.ingame">IN-GAME</span>
+        <span class="tag tag--intro" data-i18n="status.intro">INTRO/MENUS</span>
+        <span class="tag tag--nothing" data-i18n="status.nothing">NOTHING</span>
+        <span class="tag tag--untested" data-i18n="status.untested">UNTESTED</span>
       </div>
 
       <div class="compat-toolbar reveal">
@@ -175,8 +220,8 @@
     <!-- ===== Gallery ===== -->
     <section class="section" id="gallery">
       <div class="section__head reveal">
-        <span class="section__kicker" data-i18n="gallery.kicker">// CAPTURES</span>
-        <h2 class="section__title" data-i18n="gallery.title">Frames from the frontier</h2>
+        <span class="section__kicker" data-scramble data-i18n="gallery.kicker">// CAPTURES</span>
+        <h2 class="section__title" data-scramble data-i18n="gallery.title">Frames from the frontier</h2>
         <p class="section__desc" data-i18n="gallery.desc">In-emulator captures, straight from the Vulkan swapchain. New shots land as compatibility grows.</p>
       </div>
       <div class="gallery-grid reveal" id="gallery-grid"><!-- built by JS from SITE_CONFIG.gallery --></div>
@@ -185,28 +230,40 @@
     <!-- ===== Contribute ===== -->
     <section class="section section--cta" id="contribute">
       <div class="cta-card reveal">
-        <div class="cta-card__glow"></div>
-        <span class="section__kicker" data-i18n="contrib.kicker">// JOIN THE FRONTIER</span>
-        <h2 class="cta-card__title" data-i18n="contrib.title">Emulators are built by communities.</h2>
+        <div class="cta-mascot">
+          <div class="mascot mascot--mini" role="img" aria-label="Kit, the Kyty mascot">
+            <svg viewBox="0 0 120 160">
+              <use href="#mascot-shape" class="mascot__layer mascot__layer--r"/>
+              <use href="#mascot-shape" class="mascot__layer mascot__layer--c"/>
+              <use href="#mascot-shape" class="mascot__layer mascot__layer--base"/>
+              <use href="#mascot-gear" class="mascot__gear"/>
+              <use href="#mascot-eyes-open" class="mascot__eyes mascot__eyes--open"/>
+            </svg>
+          </div>
+          <p class="cta-bubble" data-i18n="contrib.bubble">Psst… starring the repo really helps.</p>
+        </div>
+
+        <span class="section__kicker" data-scramble data-i18n="contrib.kicker">// JOIN THE FRONTIER</span>
+        <h2 class="cta-card__title" data-scramble data-i18n="contrib.title">Emulators are built by communities.</h2>
         <p class="cta-card__desc" data-i18n="contrib.desc">Kyty advances one verified frame at a time. Whether you code C++, hunt GPU bugs, test games, or just spread the word — you can push the frontier forward.</p>
         <div class="cta-grid">
           <a class="cta-item" data-repo-link href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener">
-            <span class="cta-item__icon">★</span>
+            <span class="cta-item__num">01</span>
             <b data-i18n="contrib.i1t">Star the repo</b>
             <span data-i18n="contrib.i1d">Visibility brings contributors. One click helps more than you think.</span>
           </a>
           <a class="cta-item" href="https://github.com/PixelDroid19/Kyty/issues" target="_blank" rel="noopener">
-            <span class="cta-item__icon">⚑</span>
+            <span class="cta-item__num">02</span>
             <b data-i18n="contrib.i2t">Report compatibility</b>
             <span data-i18n="contrib.i2d">Boot your games, note what happens, file an issue with evidence.</span>
           </a>
           <a class="cta-item" href="https://github.com/PixelDroid19/Kyty/fork" target="_blank" rel="noopener">
-            <span class="cta-item__icon">⌥</span>
+            <span class="cta-item__num">03</span>
             <b data-i18n="contrib.i3t">Fork &amp; contribute</b>
             <span data-i18n="contrib.i3d">HLE exports, GPU parsing, SPIR-V, kernel — pick a seam and PR.</span>
           </a>
           <a class="cta-item" href="https://github.com/PixelDroid19/Kyty/blob/master/AGENTS.md" target="_blank" rel="noopener">
-            <span class="cta-item__icon">✦</span>
+            <span class="cta-item__num">04</span>
             <b data-i18n="contrib.i4t">Read the engineering guide</b>
             <span data-i18n="contrib.i4d">Strict methodology: evidence before code, one frontier at a time.</span>
           </a>
@@ -231,6 +288,19 @@
       <p class="footer__copy">© <span id="year"></span> <span data-i18n="footer.made">Built by the Kyty community</span></p>
     </div>
   </footer>
+
+  <!-- ===== Peeker (Kit occasionally peeks from a screen edge) ===== -->
+  <div class="peeker" id="peeker" aria-hidden="true">
+    <div class="mascot">
+      <svg viewBox="0 0 120 160">
+        <use href="#mascot-shape" class="mascot__layer mascot__layer--r"/>
+        <use href="#mascot-shape" class="mascot__layer mascot__layer--c"/>
+        <use href="#mascot-shape" class="mascot__layer mascot__layer--base"/>
+        <use href="#mascot-gear" class="mascot__gear"/>
+        <use href="#mascot-eyes-open" class="mascot__eyes mascot__eyes--open"/>
+      </svg>
+    </div>
+  </div>
 
   <script src="assets/js/config.js"></script>
   <script src="assets/js/i18n.js"></script>

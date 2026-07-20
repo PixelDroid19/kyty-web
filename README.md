@@ -6,6 +6,9 @@ an experimental open-source PlayStation 4/5 emulator.
 Live site: **https://pixeldroid19.github.io/kyty-web/**
 
 Bilingual (EN/ES), static, zero dependencies. Deployed with GitHub Pages.
+Visual identity: monochrome + single accent, glitch FX, and **Kit**, the mascot
+(single source in `#mascot-shape` inside `index.html`; static mark in
+`assets/img/logo.svg`).
 
 ## Structure
 

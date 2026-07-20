@@ -13,6 +13,8 @@ const I18N = {
     "hero.badge": "EXPERIMENTAL · WORK IN PROGRESS",
     "hero.sub1": "An open-source",
     "hero.sub2": "emulator pushing Sony's next-gen console onto your PC — instruction by instruction, frame by frame.",
+    "hero.petHint": "↑ pet him",
+    "hero.petAria": "Pet Kit, the mascot",
     "hero.milestone": "LATEST MILESTONE",
     "hero.cta1": "Check Compatibility",
     "hero.cta2": "Star on GitHub",
@@ -26,7 +28,7 @@ const I18N = {
     "running.kicker": "// NOW RUNNING",
     "running.title": "Booted. Rendered. <em>Played.</em>",
     "running.desc": "Real games running on real emulated hardware — no shortcuts, no faked frames. Every milestone below was reached through strict, evidence-backed emulation work.",
-    "running.shotSoon": "SCREENSHOT COMING SOON",
+    "running.shotSoon": "CAPTURE PENDING",
     "running.dcGenre": "Roguelite · Action-Platformer · Motion Twin",
     "running.dcBody": "The first title to break through the full pipeline: Vulkan device creation, Gen5 shader translation, indexed draws, VideoOut presentation, menus, loading and sustained gameplay-era frames under strict flags — no cheats, no permissive skips.",
     "running.f1k": "Renderer",
@@ -55,6 +57,7 @@ const I18N = {
     "gallery.title": "Frames from the frontier",
     "gallery.desc": "In-emulator captures, straight from the Vulkan swapchain. New shots land as compatibility grows.",
 
+    "contrib.bubble": "Psst… starring the repo really helps.",
     "contrib.kicker": "// JOIN THE FRONTIER",
     "contrib.title": "Emulators are built by communities.",
     "contrib.desc": "Kyty advances one verified frame at a time. Whether you code C++, hunt GPU bugs, test games, or just spread the word — you can push the frontier forward.",
@@ -81,6 +84,8 @@ const I18N = {
     "hero.badge": "EXPERIMENTAL · EN DESARROLLO",
     "hero.sub1": "Un emulador de",
     "hero.sub2": "de código abierto que lleva la consola de nueva generación de Sony a tu PC — instrucción a instrucción, frame a frame.",
+    "hero.petHint": "↑ acarícialo",
+    "hero.petAria": "Acaricia a Kit, la mascota",
     "hero.milestone": "ÚLTIMO HITO",
     "hero.cta1": "Ver Compatibilidad",
     "hero.cta2": "Dale una Estrella",
@@ -94,7 +99,7 @@ const I18N = {
     "running.kicker": "// AHORA CORRE",
     "running.title": "Arranca. Renderiza. <em>Se juega.</em>",
     "running.desc": "Juegos reales corriendo sobre hardware emulado de verdad — sin atajos, sin frames fingidos. Cada hito se alcanzó con trabajo de emulación estricto y respaldado por evidencia.",
-    "running.shotSoon": "CAPTURA PRÓXIMAMENTE",
+    "running.shotSoon": "CAPTURA PENDIENTE",
     "running.dcGenre": "Roguelite · Acción-Plataformas · Motion Twin",
     "running.dcBody": "El primer título en cruzar todo el pipeline: creación de dispositivo Vulkan, traducción de shaders Gen5, draws indexados, presentación VideoOut, menús, carga y frames de jugabilidad sostenidos bajo flags estrictos — sin trucos ni omisiones permisivas.",
     "running.f1k": "Renderer",
@@ -123,6 +128,7 @@ const I18N = {
     "gallery.title": "Frames desde la frontera",
     "gallery.desc": "Capturas dentro del emulador, directas del swapchain de Vulkan. Nuevas imágenes a medida que crece la compatibilidad.",
 
+    "contrib.bubble": "Psst… darle una estrella al repo ayuda muchísimo.",
     "contrib.kicker": "// ÚNETE A LA FRONTERA",
     "contrib.title": "Los emuladores los construyen las comunidades.",
     "contrib.desc": "Kyty avanza un frame verificado a la vez. Ya sea programando en C++, cazando bugs de GPU, probando juegos o difundiendo el proyecto — puedes empujar la frontera.",
@@ -158,6 +164,9 @@ const I18n = (() => {
     });
     document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
       el.placeholder = t(el.dataset.i18nPh);
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+      el.setAttribute("aria-label", t(el.dataset.i18nAria));
     });
     document.querySelectorAll(".lang-btn").forEach((btn) => {
       btn.classList.toggle("is-active", btn.dataset.lang === current);

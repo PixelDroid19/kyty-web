@@ -309,15 +309,17 @@ body {
   width: 104px;
   z-index: 45;
   pointer-events: none;
-  transform: translateX(-112%) rotate(-8deg);
+  transform: translateX(-100%) rotate(-8deg);
   transition: transform 0.75s cubic-bezier(0.34, 1.45, 0.64, 1);
 }
 
-.peeker--left  { left: 0; right: auto; transform: translateX(-112%) rotate(-8deg); }
-.peeker--right { left: auto; right: 0; transform: translateX(112%) scaleX(-1) rotate(-8deg); }
+.peeker svg { display: block; width: 100%; height: auto; overflow: visible; }
 
-.peeker--left.is-peek  { transform: translateX(-21%) rotate(4deg); }
-.peeker--right.is-peek { transform: translateX(21%) scaleX(-1) rotate(4deg); }
+.peeker--left  { left: 0; right: auto; transform: translateX(-100%) rotate(-8deg); }
+.peeker--right { left: auto; right: 0; transform: translateX(100%) scaleX(-1) rotate(-8deg); }
+
+.peeker--left.is-peek  { transform: translateX(-16%) rotate(4deg); }
+.peeker--right.is-peek { transform: translateX(16%) scaleX(-1) rotate(4deg); }
 
 .peeker.is-peek svg { animation: peek-wiggle 1.7s ease-in-out infinite; }
 
@@ -325,6 +327,16 @@ body {
   0%, 100% { transform: rotate(0deg); }
   25%      { transform: rotate(2.5deg); }
   75%      { transform: rotate(-2.5deg); }
+}
+
+/* peeker eye blink */
+.peeker .animate-blink {
+  animation: peeker-blink 5.4s infinite;
+}
+
+@keyframes peeker-blink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  96%           { transform: scaleY(0.1); }
 }
 
 /* ---------- Hero ---------- */

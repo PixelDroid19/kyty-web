@@ -1,0 +1,172 @@
+/* ============================================================
+   GAME FEATURE — "Now Running" section + CRT placeholder
+   ============================================================ */
+
+.game-feature { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center; }
+
+.game-feature__frame {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  aspect-ratio: 16 / 9;
+  background: #0b0b0e;
+}
+
+.game-feature__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.game-feature__status { position: absolute; bottom: 14px; right: 14px; z-index: 4; background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(6px); }
+
+/* --- "no signal" placeholder (CRT capture slot) --- */
+.shot-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255, 255, 255, 0.025) 3px 4px),
+    radial-gradient(ellipse 80% 60% at 50% 45%, rgba(255, 255, 255, 0.03), transparent 70%),
+    #0b0b0e;
+  overflow: hidden;
+}
+
+.shot-placeholder__hud {
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--faint);
+  z-index: 2;
+}
+
+.shot-placeholder__rec { color: var(--bad); animation: pulse 1.6s infinite; }
+
+.shot-placeholder__core {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shot-placeholder__nosignal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(19px, 3vw, 30px);
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  color: rgba(244, 244, 245, 0.82);
+  position: relative;
+}
+
+/* harder, CRT-style glitch for the signal slot */
+.glitch-hard { animation: hard-jitter 2.6s steps(1) infinite; }
+.glitch-hard::before,
+.glitch-hard::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.glitch-hard::before { color: var(--glitch-r); animation: hard-r 2.6s steps(1) infinite; }
+.glitch-hard::after  { color: var(--glitch-c); animation: hard-c 2.6s steps(1) infinite; }
+
+@keyframes hard-jitter {
+  0%, 7%, 33%, 58%, 86%, 100% { transform: none; opacity: 1; }
+  8%  { transform: translateX(-3px) skewX(-2deg); }
+  9%  { transform: translateX(2px); }
+  10% { transform: none; }
+  34% { transform: translateX(2px) skewX(2deg); opacity: 0.6; }
+  35% { transform: none; opacity: 1; }
+  59% { transform: translateX(-2px); }
+  60% { transform: none; }
+  87% { transform: translateX(3px) skewX(-1deg); opacity: 0.75; }
+  88% { transform: none; opacity: 1; }
+}
+
+@keyframes hard-r {
+  0%, 7%, 33%, 58%, 86%, 100% { opacity: 0; transform: none; clip-path: none; }
+  8%  { opacity: 0.85; transform: translate(-4px, 1px); clip-path: inset(15% 0 60% 0); }
+  10% { opacity: 0; }
+  34% { opacity: 0.85; transform: translate(3px, -1px);  clip-path: inset(55% 0 20% 0); }
+  36% { opacity: 0; }
+  59% { opacity: 0.85; transform: translate(-3px, 2px);  clip-path: inset(70% 0 5% 0); }
+  61% { opacity: 0; }
+  87% { opacity: 0.85; transform: translate(4px, -2px);  clip-path: inset(30% 0 45% 0); }
+  89% { opacity: 0; }
+}
+
+@keyframes hard-c {
+  0%, 8%, 34%, 59%, 87%, 100% { opacity: 0; transform: none; clip-path: none; }
+  9%  { opacity: 0.85; transform: translate(4px, -1px);  clip-path: inset(40% 0 35% 0); }
+  11% { opacity: 0; }
+  35% { opacity: 0.85; transform: translate(-3px, 1px);  clip-path: inset(10% 0 70% 0); }
+  37% { opacity: 0; }
+  60% { opacity: 0.85; transform: translate(3px, -2px);  clip-path: inset(62% 0 12% 0); }
+  62% { opacity: 0; }
+  88% { opacity: 0.85; transform: translate(-4px, 2px);  clip-path: inset(45% 0 30% 0); }
+  90% { opacity: 0; }
+}
+
+.shot-placeholder__sweep {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  animation: sweep 3.8s linear infinite;
+}
+
+@keyframes sweep {
+  from { top: -2%; }
+  to   { top: 102%; }
+}
+
+/* --- feature info --- */
+.game-feature__info h3 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.game-feature__genre {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 10px 0 18px;
+}
+
+.game-feature__info > p { color: var(--dim); font-size: 16px; }
+
+.game-feature__facts { list-style: none; margin: 26px 0; border-top: 1px solid var(--border); }
+
+.game-feature__facts li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+.game-feature__facts span {
+  font-family: var(--font-mono);
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 10.5px;
+}
+
+.game-feature__facts b { font-weight: 500; text-align: right; }
+
+.game-feature__note {
+  border-left: 2px solid var(--accent);
+  padding-left: 14px;
+  font-size: 15px;
+  color: var(--dim);
+}

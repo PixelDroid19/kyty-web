@@ -1,0 +1,147 @@
+/* ============================================================
+   HERO SECTION — title, glitch, badge, CTA, scroll indicator
+   ============================================================ */
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 110px 24px 90px;
+  position: relative;
+}
+
+.hero__inner { max-width: 900px; display: flex; flex-direction: column; align-items: center; }
+
+.hero__title {
+  margin-top: 30px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(64px, 14vw, 158px);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: var(--text);
+  position: relative;
+  animation: title-jitter 4.2s steps(1) infinite;
+}
+
+.hero__title::before,
+.hero__title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero__title::before { color: var(--glitch-r); animation: title-r 4.2s steps(1) infinite; }
+.hero__title::after  { color: var(--glitch-c); animation: title-c 4.2s steps(1) infinite; }
+
+@keyframes title-jitter {
+  0%, 9.5%, 41%, 72.5%, 100% { transform: none; }
+  10%  { transform: translate(-2px, 1px) skewX(-1deg); }
+  11%  { transform: translate(2px, -1px); }
+  12%  { transform: none; }
+  42%  { transform: translate(-1px, -1px) skewX(1deg); }
+  43.5%{ transform: none; }
+  73%  { transform: translate(2px, 1px); }
+  74.5%{ transform: none; }
+}
+
+@keyframes title-r {
+  0%, 9.5%, 41%, 72.5%, 100% { opacity: 0; transform: none; clip-path: none; }
+  10%  { opacity: 0.9; transform: translate(-5px, 2px); clip-path: inset(12% 0 55% 0); }
+  11%  { opacity: 0.9; transform: translate(4px, -2px);  clip-path: inset(48% 0 22% 0); }
+  12%  { opacity: 0; }
+  42%  { opacity: 0.9; transform: translate(-4px, -1px); clip-path: inset(62% 0 8% 0); }
+  43.5%{ opacity: 0; }
+  73%  { opacity: 0.9; transform: translate(5px, 2px);   clip-path: inset(28% 0 44% 0); }
+  74.5%{ opacity: 0; }
+}
+
+@keyframes title-c {
+  0%, 10%, 41.5%, 73.5%, 100% { opacity: 0; transform: none; clip-path: none; }
+  10.5%{ opacity: 0.9; transform: translate(5px, -2px);   clip-path: inset(38% 0 30% 0); }
+  11.5%{ opacity: 0.9; transform: translate(-4px, 2px);   clip-path: inset(8% 0 68% 0); }
+  12.5%{ opacity: 0; }
+  42.5%{ opacity: 0.9; transform: translate(4px, 1px);    clip-path: inset(52% 0 16% 0); }
+  44%  { opacity: 0; }
+  74%  { opacity: 0.9; transform: translate(-5px, -2px);  clip-path: inset(70% 0 4% 0); }
+  75.5%{ opacity: 0; }
+}
+
+.hero__sub {
+  max-width: 640px;
+  margin-top: 28px;
+  font-size: clamp(17px, 2.2vw, 20px);
+  color: var(--dim);
+}
+
+.hero__sub strong { color: var(--text); font-weight: 600; }
+.hero__sub sup { font-size: 0.55em; }
+
+.hero__badge {
+  margin-top: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.pulse-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.hero__badge-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--faint);
+}
+
+.hero__badge-game {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 15px;
+}
+
+.hero__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 44px; }
+
+.hero__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-top: 48px; }
+
+.hero__scroll {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px; height: 40px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 13px;
+}
+
+.hero__scroll span {
+  position: absolute;
+  top: 7px; left: 50%;
+  width: 3px; height: 7px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: var(--text);
+  animation: scrollHint 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollHint {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { transform: translateY(14px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}

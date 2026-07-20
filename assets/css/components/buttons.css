@@ -1,0 +1,66 @@
+/* ============================================================
+   BUTTONS, CHIPS & TAGS
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 28px;
+  border-radius: 9px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.12s;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn--primary { background: var(--text); color: #0a0a0c; }
+.btn--primary:hover { background: var(--accent); color: #05070d; }
+
+.btn--outline { border-color: var(--border-strong); color: var(--text); }
+.btn--outline:hover { border-color: var(--text); }
+
+.btn--ghost { border-color: var(--border); color: var(--text); }
+.btn--ghost:hover { border-color: var(--border-strong); }
+
+.btn--sm { padding: 9px 16px; font-size: 11px; }
+
+/* --- chips --- */
+.chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 13px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.chip:hover { color: var(--text); border-color: var(--border-strong); }
+
+/* --- tags (semantic status) --- */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-radius: 5px;
+  padding: 4px 10px;
+  border: 1px solid currentColor;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.tag--playable { color: var(--ok); }
+.tag--ingame   { color: var(--warn); }
+.tag--intro    { color: var(--mid); }
+.tag--nothing  { color: var(--bad); }
+.tag--untested { color: var(--faint); }

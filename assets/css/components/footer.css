@@ -1,0 +1,35 @@
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer { border-top: 1px solid var(--border); padding: 52px 24px 36px; }
+.footer__inner { max-width: 820px; margin: 0 auto; text-align: center; }
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 4px;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+.footer__legal { color: var(--faint); font-size: 12.5px; line-height: 1.65; max-width: 700px; margin: 0 auto 22px; }
+
+.footer__links { display: flex; justify-content: center; gap: 26px; margin-bottom: 20px; }
+
+.footer__links a {
+  color: var(--dim);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.15s;
+}
+
+.footer__links a:hover { color: var(--text); }
+.footer__copy { color: var(--faint); font-size: 13px; }

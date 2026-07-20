@@ -1,0 +1,64 @@
+/* ============================================================
+   UTILITIES — reveal animations, responsive, reduced motion
+   ============================================================ */
+
+/* --- reveal on scroll --- */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* --- responsive (tablet) --- */
+@media (max-width: 900px) {
+  .game-feature { grid-template-columns: 1fr; }
+  .nav__links {
+    position: fixed;
+    top: 64px; right: 0; left: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(9, 9, 11, 0.98);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 28px 18px;
+    transform: translateY(-140%);
+    transition: transform 0.3s;
+    margin-left: 0;
+  }
+  .nav__links.is-open { transform: translateY(0); }
+  .nav__links a { padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .nav__burger { display: flex; }
+  .nav__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__burger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav { gap: 14px; }
+  .nav__actions { margin-left: auto; }
+}
+
+/* --- responsive (mobile) --- */
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .section { padding: 84px 18px; }
+  .compat-table th:nth-child(3), .compat-table td:nth-child(3),
+  .compat-table th:nth-child(4), .compat-table td:nth-child(4) { display: none; }
+  .hero__cta .btn { width: 100%; justify-content: center; }
+  .hero__badge { gap: 9px; padding: 9px 16px; }
+  .hero__badge-label { display: none; }
+  .btn--ghost.btn--sm { display: none; }
+  .cta-card { padding: 48px 22px; }
+  .cta-mascot { flex-direction: column; gap: 14px; }
+  .peeker { width: 78px; bottom: 6vh; }
+  .cta-bubble::before { left: 50%; top: auto; bottom: -6px; transform: translateX(-50%) rotate(45deg); border-left: none; border-bottom: 1px solid var(--border-strong); border-right: 1px solid var(--border-strong); }
+}
+
+/* --- reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+  html { scroll-behavior: auto; }
+  .noise { display: none; }
+  .mascot__layer--r, .mascot__layer--c,
+  .hero__title::before, .hero__title::after,
+  .glitch-hard::before, .glitch-hard::after { display: none; }
+  .peeker { display: none; }
+  .mascot-hint { animation: none; }
+}

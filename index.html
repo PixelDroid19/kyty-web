@@ -318,25 +318,17 @@
     </svg>
   </div>
 
+  <!-- ===== Scripts (modular) ===== -->
   <script src="assets/js/config.js"></script>
   <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script>
-    // Demo: los ojos del peeker siguen al cursor (demuestra que el grupo rota/traslada libremente)
-    (function () {
-      const eyes = document.getElementById('mascot-peeker-eyes');
-      if (!eyes) return;
-      document.addEventListener('mousemove', (e) => {
-        const rect = eyes.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const angle = Math.atan2(e.clientY - cy, e.clientX - cx);
-        const dist = Math.min(Math.hypot(e.clientX - cx, e.clientY - cy) / 80, 4);
-        const x = Math.cos(angle) * dist;
-        const y = Math.sin(angle) * dist;
-        eyes.style.transform = `translate(${x}px, ${y}px) rotate(${angle * 0.15}deg)`;
-      });
-    })();
-  </script>
+  <script src="assets/js/modules/brand.js"></script>
+  <script src="assets/js/modules/particles.js"></script>
+  <script src="assets/js/modules/nav.js"></script>
+  <script src="assets/js/modules/scramble.js"></script>
+  <script src="assets/js/modules/compat.js"></script>
+  <script src="assets/js/modules/gallery.js"></script>
+  <script src="assets/js/modules/mascot.js"></script>
+  <script src="assets/js/modules/app.js"></script>
 </body>
 </html>
+

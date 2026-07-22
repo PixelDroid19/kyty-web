@@ -6,6 +6,7 @@
 const I18N = {
   en: {
     "nav.games": "Games",
+    "nav.downloads": "Downloads",
     "nav.compat": "Compatibility",
     "nav.gallery": "Gallery",
     "nav.contribute": "Contribute",
@@ -18,6 +19,21 @@ const I18N = {
     "hero.milestone": "LATEST MILESTONE",
     "hero.cta1": "Check Compatibility",
     "hero.cta2": "Star on GitHub",
+
+    "release.kicker": "// LATEST RELEASE",
+    "release.title": "Download Kyty",
+    "release.desc": "Official builds and release notes are loaded directly from the Kyty GitHub repository.",
+    "release.loading": "Loading the latest official release…",
+    "release.error": "The latest release could not be loaded right now.",
+    "release.fallback": "View releases on GitHub",
+    "release.windows": "Windows x64",
+    "release.linux": "Linux x64",
+    "release.macos": "macOS x64",
+    "release.changelog": "Changelog",
+    "release.fullNotes": "Full release notes",
+    "release.source": "Source at this version",
+    "release.noNotes": "No release notes were provided.",
+    "release.unknown": "Latest release",
 
     "status.playable": "PLAYABLE",
     "status.ingame": "IN-GAME",
@@ -79,6 +95,7 @@ const I18N = {
 
   es: {
     "nav.games": "Juegos",
+    "nav.downloads": "Descargas",
     "nav.compat": "Compatibilidad",
     "nav.gallery": "Galería",
     "nav.contribute": "Contribuir",
@@ -91,6 +108,21 @@ const I18N = {
     "hero.milestone": "ÚLTIMO HITO",
     "hero.cta1": "Ver Compatibilidad",
     "hero.cta2": "Dale una Estrella",
+
+    "release.kicker": "// ÚLTIMA VERSIÓN",
+    "release.title": "Descarga Kyty",
+    "release.desc": "Los builds oficiales y sus notas se cargan directamente desde el repositorio de Kyty en GitHub.",
+    "release.loading": "Cargando la última versión oficial…",
+    "release.error": "No se pudo cargar la última versión en este momento.",
+    "release.fallback": "Ver versiones en GitHub",
+    "release.windows": "Windows x64",
+    "release.linux": "Linux x64",
+    "release.macos": "macOS x64",
+    "release.changelog": "Registro de cambios",
+    "release.fullNotes": "Notas completas",
+    "release.source": "Código de esta versión",
+    "release.noNotes": "Esta versión no contiene notas.",
+    "release.unknown": "Última versión",
 
     "status.playable": "JUGABLE",
     "status.ingame": "EN JUEGO",

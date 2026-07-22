@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initParticles();
   initNav();
   initReveal();
+  initReleases();
   initCompat();
   renderGallery();
   initPetting();

@@ -66,6 +66,7 @@
     </a>
     <nav class="nav__links">
       <a href="#now-running" data-i18n="nav.games">Games</a>
+      <a href="#downloads" data-i18n="nav.downloads">Downloads</a>
       <a href="#compatibility" data-i18n="nav.compat">Compatibility</a>
       <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
       <a href="#contribute" data-i18n="nav.contribute">Contribute</a>
@@ -136,6 +137,47 @@
         </div>
       </div>
       <a class="hero__scroll" href="#now-running" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ===== Releases ===== -->
+    <section class="section" id="downloads">
+      <div class="section__head reveal">
+        <span class="section__kicker" data-scramble data-i18n="release.kicker">// LATEST RELEASE</span>
+        <h2 class="section__title" data-i18n="release.title">Download Kyty</h2>
+        <p class="section__desc" data-i18n="release.desc">Official builds and release notes are loaded directly from the Kyty GitHub repository.</p>
+      </div>
+      <div class="release-card reveal">
+        <p class="release-status" id="release-loading" data-i18n="release.loading">Loading the latest official release…</p>
+        <a class="release-status" id="release-fallback" href="https://github.com/PixelDroid19/Kyty/releases" target="_blank" rel="noopener" hidden data-i18n="release.fallback">View releases on GitHub</a>
+        <div id="release-content" hidden>
+          <div class="release-meta">
+            <strong class="release-version" id="release-version">—</strong>
+            <span class="release-date" id="release-date">—</span>
+          </div>
+          <div class="release-downloads">
+            <a class="btn btn--outline release-download" data-release-platform="windows" href="#" target="_blank" rel="noopener" hidden>
+              <span data-i18n="release.windows">Windows x64</span>
+              <small data-asset-name></small>
+            </a>
+            <a class="btn btn--outline release-download" data-release-platform="linux" href="#" target="_blank" rel="noopener" hidden>
+              <span data-i18n="release.linux">Linux x64</span>
+              <small data-asset-name></small>
+            </a>
+            <a class="btn btn--outline release-download" data-release-platform="macos" href="#" target="_blank" rel="noopener" hidden>
+              <span data-i18n="release.macos">macOS x64</span>
+              <small data-asset-name></small>
+            </a>
+          </div>
+          <div class="release-changelog">
+            <h3 data-i18n="release.changelog">Changelog</h3>
+            <div class="release-notes" id="release-notes"></div>
+            <div class="release-actions">
+              <a class="btn btn--primary btn--sm" id="release-link" href="https://github.com/PixelDroid19/Kyty/releases" target="_blank" rel="noopener" data-i18n="release.fullNotes">Full release notes</a>
+              <a class="btn btn--ghost btn--sm" id="release-source-link" href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener" data-i18n="release.source">Source at this version</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ===== Now Running ===== -->
@@ -268,7 +310,7 @@
             <b data-i18n="contrib.i3t">Fork &amp; contribute</b>
             <span data-i18n="contrib.i3d">HLE exports, GPU parsing, SPIR-V, kernel — pick a seam and PR.</span>
           </a>
-          <a class="cta-item" href="https://github.com/PixelDroid19/Kyty/blob/master/AGENTS.md" target="_blank" rel="noopener">
+          <a class="cta-item" href="https://github.com/PixelDroid19/Kyty/blob/main/AGENTS.md" target="_blank" rel="noopener">
             <span class="cta-item__num">04</span>
             <b data-i18n="contrib.i4t">Read the engineering guide</b>
             <span data-i18n="contrib.i4d">Strict methodology: evidence before code, one frontier at a time.</span>
@@ -331,6 +373,7 @@
   <script src="assets/js/modules/particles.js"></script>
   <script src="assets/js/modules/nav.js"></script>
   <script src="assets/js/modules/scramble.js"></script>
+  <script src="assets/js/modules/releases.js"></script>
   <script src="assets/js/modules/compat.js"></script>
   <script src="assets/js/modules/gallery.js"></script>
   <script src="assets/js/modules/mascot.js"></script>

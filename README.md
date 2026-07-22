@@ -17,7 +17,7 @@ index.html            Page markup (all text via data-i18n keys)
 assets/css/styles.css Theme (dark · neon · Orbitron/Rajdhani)
 assets/js/config.js   ★ Site name, repo URL, gallery manifest, compat data
 assets/js/i18n.js     EN/ES dictionary + language switch
-assets/js/main.js     Particles, nav, compat table, gallery
+assets/js/modules/    Page behavior, including live GitHub Releases data
 screenshots/          Drop game captures here (see its README)
 ```
 
@@ -30,6 +30,8 @@ screenshots/          Drop game captures here (see its README)
 - **Add screenshots:** copy files into `screenshots/` and register them in
   `SITE_CONFIG.gallery` (details in `screenshots/README.md`).
 - **Change text:** edit `assets/js/i18n.js` (both `en` and `es` blocks).
+- **Release downloads and changelog:** loaded from the Kyty GitHub Releases API;
+  configure the endpoints in `assets/js/config.js`.
 
 ## Local preview
 

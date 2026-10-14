@@ -339,29 +339,124 @@
 
   <!-- ===== Peeker (Kit occasionally peeks from a screen edge) ===== -->
   <div class="peeker" id="peeker" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 210" class="mascot-peeker-svg w-full h-full" style="--mascot-body: #f4f4f5; --mascot-eyes: #5b8cff; --mascot-accent: #18181b;">
-      <!-- Cuerpo (Mascota) -->
-      <path fill="var(--mascot-body, #f4f4f5)" d="M0 120 Q26 122 40 132 Q56 152 50 174 Q44 192 22 199 Q6 204 0 196 Z" />
-      <!-- Pata Superior -->
-      <path fill="var(--mascot-body, #f4f4f5)" stroke="var(--mascot-accent, #18181b)" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round" d="M 0 122 A 10 10 0 0 1 10 132 A 10 10 0 0 1 10 144 A 10 10 0 0 1 0 154" />
-      <!-- Pata Inferior -->
-      <path fill="var(--mascot-body, #f4f4f5)" stroke="var(--mascot-accent, #18181b)" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round" d="M 0 160 A 10 10 0 0 1 10 170 A 10 10 0 0 1 10 182 A 10 10 0 0 1 0 192" />
-      <!-- Cabeza Principal -->
-      <g transform="matrix(1 0 0 1 -0.525 17.728)">
-        <path fill="var(--mascot-body, #f4f4f5)" d="M0 104 L0 34 Q4 16 30 2 Q42 14 52 28 Q62 32 74 40 Q92 44 108 54 L88 82 Q82 100 62 108 Q42 115 24 108 Q6 106 0 104 Z" />
-        <path stroke="var(--mascot-body, #f4f4f5)" stroke-width="2.4" stroke-linecap="round" fill="none" d="M78 92 L94 96 M74 101 L90 106" />
-      </g>
-      <!-- Collar y Cascabel -->
-      <g stroke="var(--mascot-accent, #18181b)" fill="var(--mascot-accent, #18181b)" transform="matrix(0.9705 0 0 1.023 -41.644 -41.583)">
-        <path stroke-width="4" stroke-linecap="round" fill="none" d="M44 161 C52 165 62 167.2 77 167.5" />
-        <circle cx="56.3" cy="171" r="3.5" />
-      </g>
-      <!-- Ojos Reactivos y Dinamicos -->
-      <g id="mascot-peeker-eyes" fill="var(--mascot-eyes, #5b8cff)" style="transform-origin: 32px 89px; transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);">
-        <g class="animate-blink" style="transform-origin: 32px 89px;">
-          <rect x="14" y="80" width="8" height="15" rx="4" />
-          <rect x="42" y="84" width="8" height="15" rx="4" />
-        </g>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="58 20 170 296" class="mascot-peeker-svg">
+      <defs>
+          <!-- Sombra suave para separar las patitas y la cabeza del cuerpo -->
+          <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.22"/>
+          </filter>
+
+          <filter id="paw-shadow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="-2" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.18"/>
+          </filter>
+
+          <!-- Brillo sutil para los ojos azules -->
+          <linearGradient id="eye-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#609bff"/>
+              <stop offset="100%" stop-color="#4782f5"/>
+          </linearGradient>
+
+          <!-- Gradiente sutil para el cuerpo blanco y evitar que se vea plano o sucio -->
+          <linearGradient id="fur-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="100%" stop-color="#f2f4f8"/>
+          </linearGradient>
+
+          <!-- Recorte para todo lo que está a la izquierda de la pared derecha (x = 228) -->
+          <clipPath id="wall-clip">
+              <rect x="0" y="0" width="228" height="340"/>
+          </clipPath>
+
+          <!-- Recorte exacto de la silueta del cuerpo y patitas para que ninguna línea gris sobresalga al fondo negro -->
+          <clipPath id="body-paw-clip">
+              <path d="M 149 184 &#10;                                     C 146 212, 156 236, 171 253 &#10;                                     C 176 263, 180 273, 182 281 &#10;                                     C 171 283, 168 297, 176 303 &#10;                                     C 183 307, 196 306, 203 303 &#10;                                     C 207 309, 217 311, 228 310 &#10;                                     L 235 310 &#10;                                     L 235 130 &#10;                                     L 149 130 &#10;                                     Z"/>
+          </clipPath>
+      </defs>
+
+      <!-- 2. GRUPO DEL GATITO RECORTADO POR EL BORDE DEL MARCO -->
+      <g clip-path="url(#wall-clip)">
+          <g id="cat-master" class="cat-whole-transition">
+
+              <!-- 2.1 CUERPO Y PATITAS SENTADAS (FIEL A LA SEGUNDA IMAGEN) -->
+              <!-- El cuerpo nace en el cuello (x=149), hace la curva del pecho, baja por la pierna y forma las dos patitas en la base -->
+              <path id="cat-body" d="M 149 184 &#10;                                     C 146 212, 156 236, 171 253 &#10;                                     C 176 263, 180 273, 182 281 &#10;                                     C 171 283, 168 297, 176 303 &#10;                                     C 183 307, 196 306, 203 303 &#10;                                     C 207 309, 217 311, 228 310 &#10;                                     L 235 310 &#10;                                     L 235 130 &#10;                                     L 149 130 &#10;                                     Z" fill="#ffffff"/>
+
+              <!-- Sombra sutil opcional bajo el collar -->
+              <path id="neck-shadow" d="M 149 188 C 178 192, 206 183, 228 168 L 228 160 L 149 178 Z" fill="#e5e7eb" opacity="0" class="transition-opacity duration-300"/>
+
+              <!-- 2.2 LÍNEAS DE SEPARACIÓN DE LAS PIERNAS Y DEDITOS (Recortadas al ras de las patitas) -->
+              <g id="paws-group" clip-path="url(#body-paw-clip)">
+                  <!-- Línea gris que empieza en punta fina arriba (y=227), baja ensanchándose y contornea la patita derecha -->
+                  <path id="leg-separator" d="M 201 227 &#10;                                         C 201.5 245, 206 266, 210.5 285.5 &#10;                                         C 202.5 289.5, 200.5 297, 204.5 306 &#10;                                         L 201.2 305.5 &#10;                                         C 197 296.5, 199 287.5, 207 283.5 &#10;                                         C 203 265, 199.5 245, 201 227 Z" fill="#9ca3af"/>
+
+                  <!-- Marquitas de los deditos de la patita izquierda (cortadas exactamente al ras del borde inferior) -->
+                  <path d="M 178.5 307 C 178.2 300.5, 179.8 295.5, 181.5 292.5" fill="none" stroke="#b8bcc6" stroke-width="2.8" stroke-linecap="round"/>
+                  <path d="M 185.5 308 C 185.2 301.5, 186.8 296.5, 188.5 293.5" fill="none" stroke="#b8bcc6" stroke-width="2.8" stroke-linecap="round"/>
+
+                  <!-- Marquitas de los deditos de la patita derecha (cortadas exactamente al ras del borde inferior) -->
+                  <path d="M 210 312 C 209.7 305, 211.3 299.5, 213 296.5" fill="none" stroke="#b8bcc6" stroke-width="2.8" stroke-linecap="round"/>
+                  <path d="M 217 312.5 C 216.7 305.5, 218.3 300, 220 297" fill="none" stroke="#b8bcc6" stroke-width="2.8" stroke-linecap="round"/>
+              </g>
+
+              <!-- 2.3 GRUPO DE CABEZA ANIMADA Y COLLAR -->
+              <g id="cat-head-group" class="cat-head-anim peeker__head">
+
+                  <!-- BIGOTES IZQUIERDOS -->
+                  <g class="whiskers-anim" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round">
+                      <line x1="62" y1="114" x2="88" y2="119"/>
+                      <line x1="64" y1="132" x2="89" y2="130"/>
+                  </g>
+
+                  <!-- OREJA IZQUIERDA -->
+                  <g class="ear-left-anim">
+                      <path d="M 109 102 L 98 25 L 156 71 Z" fill="#ffffff" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+                      <path id="ear-inner-left" d="M 113 92 L 106 43 L 144 73 Z" fill="#ffd6e0" opacity="0" class="transition-opacity duration-300"/>
+                  </g>
+
+                  <!-- OREJA DERECHA -->
+                  <g>
+                      <path d="M 188 73 L 242 36 L 234 115 Z" fill="#ffffff" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+                      <path id="ear-inner-right" d="M 198 76 L 232 52 L 228 98 Z" fill="#ffd6e0" opacity="0" class="transition-opacity duration-300"/>
+                  </g>
+
+                  <!-- CABEZA PRINCIPAL (Coronilla redonda y suave entre las dos orejas) -->
+                  <path d="M 235 80 &#10;                                         A 84 65 0 1 0 164 189 &#10;                                         C 192 189, 215 178, 235 165 Z" fill="#ffffff"/>
+
+                  <!-- Rubor sutil en las mejillas (opcional) -->
+                  <g id="cheeks-group" opacity="0" class="transition-opacity duration-300">
+                      <ellipse cx="115" cy="136" rx="11" ry="6" fill="#ff9ebb"/>
+                      <ellipse cx="195" cy="140" rx="11" ry="6" fill="#ff9ebb"/>
+                  </g>
+
+                  <!-- OJOS AZULES INTERACTIVOS -->
+                  <g id="mascot-peeker-eyes">
+                      <!-- Ojo Izquierdo -->
+                      <g id="eye-left" transform="translate(137.40, 104.63) rotate(4)">
+                          <rect id="eye-rect-l" x="-9" y="-15" width="18" height="30" rx="9" fill="#4182fa" class="transition-all duration-150 animate-blink"/>
+                          <circle id="eye-shine-l" cx="-3" cy="-7" r="3" fill="#ffffff" opacity="0" class="transition-opacity duration-300"/>
+                      </g>
+                      <!-- Ojo Derecho -->
+                      <g id="eye-right" transform="translate(185.40, 107.63) rotate(4)">
+                          <rect id="eye-rect-r" x="-9" y="-15" width="18" height="30" rx="9" fill="#4182fa" class="transition-all duration-150 animate-blink"/>
+                          <circle id="eye-shine-r" cx="-3" cy="-7" r="3" fill="#ffffff" opacity="0" class="transition-opacity duration-300"/>
+                      </g>
+                  </g>
+
+                  <!-- COLLAR Y CASCABEL PULIDOS AL MILÍMETRO (Sin protuberancia fuera del cuello izquierdo) -->
+                  <g id="collar-group">
+                      <!-- Correa del collar dibujada como forma rellena precisa para que el borde izquierdo encaje con el cuello y el mentón -->
+                      <path d="M 148.5 183.8 &#10;                                             C 176 186.5, 204 176.5, 230 159.5 &#10;                                             L 230 169 &#10;                                             C 204 185.5, 176 194.5, 149.2 191.5 &#10;                                             C 146.5 191.2, 145.8 184.2, 148.5 183.8 Z" fill="#1e2024"/>
+
+                      <!-- Pequeña unión vertical del cascabel al collar -->
+                      <line x1="167.5" y1="189" x2="167.5" y2="196" stroke="#1e2024" stroke-width="3.2" stroke-linecap="round"/>
+
+                      <!-- Cascabel redondo oscuro con su brillo gris superior izquierdo -->
+                      <circle cx="167.5" cy="201.5" r="7.5" fill="#1e2024"/>
+                      <circle id="bell-shine" cx="165" cy="199" r="2.1" fill="#7c8089"/>
+                  </g>
+              </g>
+
+          </g>
       </g>
     </svg>
   </div>

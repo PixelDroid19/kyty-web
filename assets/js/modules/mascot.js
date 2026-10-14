@@ -104,8 +104,10 @@ function initPeekerEyes() {
     const cy = rect.top + rect.height / 2;
     const angle = Math.atan2(e.clientY - cy, e.clientX - cx);
     const dist = Math.min(Math.hypot(e.clientX - cx, e.clientY - cy) / 80, 4);
-    const x = Math.cos(angle) * dist;
+    // The left-side peeker is mirrored with scaleX(-1), so flip x to keep looking at the cursor
+    const mirror = document.getElementById("peeker").classList.contains("peeker--left") ? -1 : 1;
+    const x = Math.cos(angle) * dist * mirror;
     const y = Math.sin(angle) * dist;
-    eyes.style.transform = `translate(${x}px, ${y}px) rotate(${angle * 0.15}deg)`;
+    eyes.style.transform = `translate(${x}px, ${y}px)`;
   });
 }

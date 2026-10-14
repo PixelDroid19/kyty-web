@@ -2,13 +2,10 @@
    CONTRIBUTE — CTA card, mascot bubble, action grid
    ============================================================ */
 
+/* No outer box: the four action items are the only boxes in this section. */
 .cta-card {
   position: relative;
   text-align: center;
-  padding: 64px 40px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: var(--surface);
 }
 
 .cta-mascot {

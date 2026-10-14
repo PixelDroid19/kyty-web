@@ -2,12 +2,8 @@
    RELEASES — live version, downloads and changelog
    ============================================================ */
 
-.release-card {
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(107, 157, 255, 0.1), var(--surface) 38%);
-  padding: clamp(26px, 5vw, 52px);
-}
+/* No outer box: the section sits on the page, so downloads are the only boxes. */
+.release-card { padding: 0; }
 
 .release-status { color: var(--dim); text-align: center; }
 .release-status a { color: var(--accent); }

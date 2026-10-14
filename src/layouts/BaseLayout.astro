@@ -1,0 +1,44 @@
+---
+import { asset } from '../lib/asset';
+import '../styles/styles.css';
+import MascotDefs from '../components/MascotDefs.astro';
+
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KYTY — PlayStation 5 Emulator</title>
+  <meta name="description" content="Kyty is an experimental open-source PlayStation 4/5 emulator. Dead Cells is playable. Vulkan renderer, MIT licensed, Linux · macOS · Windows." />
+  <meta property="og:title" content="KYTY — PlayStation 5 Emulator" />
+  <meta property="og:description" content="Experimental open-source PS4/PS5 emulator. Dead Cells is playable. Help us push compatibility further." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pixeldroid19.github.io/kyty-web/" />
+  <link rel="icon" type="image/svg+xml" href={asset("assets/img/logo.svg")} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <MascotDefs />
+
+  <!-- ===== Background FX ===== -->
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+  <slot />
+
+  <!-- ===== Scripts (classic, order matters: config → i18n → modules → app) ===== -->
+  <script is:inline src={asset("assets/js/config.js")}></script>
+  <script is:inline src={asset("assets/js/i18n.js")}></script>
+  <script is:inline src={asset("assets/js/modules/brand.js")}></script>
+  <script is:inline src={asset("assets/js/modules/particles.js")}></script>
+  <script is:inline src={asset("assets/js/modules/nav.js")}></script>
+  <script is:inline src={asset("assets/js/modules/scramble.js")}></script>
+  <script is:inline src={asset("assets/js/modules/releases.js")}></script>
+  <script is:inline src={asset("assets/js/modules/compat.js")}></script>
+  <script is:inline src={asset("assets/js/modules/gallery.js")}></script>
+  <script is:inline src={asset("assets/js/modules/mascot.js")}></script>
+  <script is:inline src={asset("assets/js/modules/app.js")}></script>
+</body>
+</html>

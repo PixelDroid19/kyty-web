@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Releases from '../components/Releases.astro';
+import NowRunning from '../components/NowRunning.astro';
+import Compatibility from '../components/Compatibility.astro';
+import Gallery from '../components/Gallery.astro';
+import Contribute from '../components/Contribute.astro';
+import Footer from '../components/Footer.astro';
+import Peeker from '../components/Peeker.astro';
+---
+<BaseLayout>
+  <Disclaimer />
+  <Nav />
+  <main id="top">
+    <Hero />
+    <Releases />
+    <NowRunning />
+    <Compatibility />
+    <Gallery />
+    <Contribute />
+  </main>
+  <Footer />
+  <Peeker />
+</BaseLayout>

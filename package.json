@@ -1,0 +1,19 @@
+{
+  "name": "kyty-web",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Landing page for the Kyty PS5 emulator (Astro, static)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "astro": "^7.3.8"
+  }
+}

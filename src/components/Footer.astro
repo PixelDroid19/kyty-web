@@ -1,0 +1,19 @@
+---
+import { asset } from '../lib/asset';
+---
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img src={asset("assets/img/logo.svg")} alt="" class="nav__logo" />
+      <span data-site-name>KYTY</span>
+    </div>
+    <p class="footer__legal" data-i18n="footer.legal">Kyty is a free, open-source research project licensed under MIT. It is not affiliated with, endorsed by, or sponsored by Sony Interactive Entertainment. "PlayStation" and "PS5" are trademarks of Sony Interactive Entertainment Inc. No games, firmware, keys or BIOS files are distributed.</p>
+    <div class="footer__links">
+      <a data-repo-link href="https://github.com/PixelDroid19/Kyty" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/PixelDroid19/Kyty/issues" target="_blank" rel="noopener">Issues</a>
+      <a data-upstream-link href="https://github.com/InoriRus/Kyty" target="_blank" rel="noopener" data-i18n="footer.upstream">Upstream project</a>
+    </div>
+    <p class="footer__copy">© <span id="year"></span> <span data-i18n="footer.made">Built by the Kyty community</span></p>
+  </div>
+</footer>

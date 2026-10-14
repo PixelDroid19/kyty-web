@@ -1,0 +1,47 @@
+<!-- ===== Compatibility ===== -->
+<section class="section" id="compatibility">
+  <div class="section__head reveal">
+    <span class="section__kicker" data-scramble data-i18n="compat.kicker">// GAME COMPATIBILITY</span>
+    <h2 class="section__title" data-scramble data-i18n="compat.title">What runs today?</h2>
+    <p class="section__desc" data-i18n="compat.desc">Kyty is young. This list tracks verified, strict-run results only — no guesses, no inflated claims. Help us grow it by testing and reporting.</p>
+  </div>
+
+  <div class="compat-legend reveal">
+    <span class="tag tag--playable" data-i18n="status.playable">PLAYABLE</span>
+    <span class="tag tag--ingame" data-i18n="status.ingame">IN-GAME</span>
+    <span class="tag tag--intro" data-i18n="status.intro">INTRO/MENUS</span>
+    <span class="tag tag--nothing" data-i18n="status.nothing">NOTHING</span>
+    <span class="tag tag--untested" data-i18n="status.untested">UNTESTED</span>
+  </div>
+
+  <div class="compat-toolbar reveal">
+    <input type="search" id="compat-search" class="compat-search" data-i18n-ph="compat.search" placeholder="Search a game…" />
+    <div class="compat-filters" id="compat-filters">
+      <button class="filter-btn is-active" data-filter="all" data-i18n="compat.all">All</button>
+      <button class="filter-btn" data-filter="playable" data-i18n="status.playable">Playable</button>
+      <button class="filter-btn" data-filter="ingame" data-i18n="status.ingame">In-Game</button>
+      <button class="filter-btn" data-filter="intro" data-i18n="status.intro">Intro</button>
+      <button class="filter-btn" data-filter="nothing" data-i18n="status.nothing">Nothing</button>
+    </div>
+  </div>
+
+  <div class="compat-table-wrap reveal">
+    <table class="compat-table" id="compat-table">
+      <thead>
+        <tr>
+          <th data-i18n="compat.colGame">Game</th>
+          <th data-i18n="compat.colStatus">Status</th>
+          <th data-i18n="compat.colNotes">Notes</th>
+          <th data-i18n="compat.colTested">Tested build</th>
+        </tr>
+      </thead>
+      <tbody id="compat-body"><!-- built by JS from COMPAT_DATA --></tbody>
+    </table>
+    <p class="compat-empty" id="compat-empty" hidden data-i18n="compat.empty">No results. This title hasn't been tested yet — be the first to report it!</p>
+  </div>
+
+  <div class="compat-cta reveal">
+    <p data-i18n="compat.ctaText">Tested a game that's not listed? Open an issue with your hardware, OS and result.</p>
+    <a class="btn btn--primary btn--sm" href="https://github.com/PixelDroid19/Kyty/issues" target="_blank" rel="noopener" data-i18n="compat.ctaBtn">Report a result</a>
+  </div>
+</section>

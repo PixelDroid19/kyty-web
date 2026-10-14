@@ -41,7 +41,6 @@
   .hero__badge { gap: 9px; padding: 9px 16px; }
   .hero__badge-label { display: none; }
   .btn--ghost.btn--sm { display: none; }
-  .cta-card { padding: 48px 22px; }
   .cta-mascot { flex-direction: column; gap: 14px; }
   .peeker { width: 78px; bottom: 6vh; }
   .cta-bubble::before { left: 50%; top: auto; bottom: -6px; transform: translateX(-50%) rotate(45deg); border-left: none; border-bottom: 1px solid var(--border-strong); border-right: 1px solid var(--border-strong); }

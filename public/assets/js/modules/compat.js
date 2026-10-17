@@ -10,6 +10,15 @@ const TAG_CLASS = {
   untested: "tag--untested",
 };
 
+function compatShot(row) {
+  if (!row.shot) return "";
+  return `<a class="compat-shot" href="${row.shot}" target="_blank" rel="noopener"><img src="${row.shot}" alt="${row.game}" loading="lazy" /></a>`;
+}
+
+function compatFps(row, host) {
+  return (row.fps && row.fps[host]) || "—";
+}
+
 function renderCompat() {
   const body = document.getElementById("compat-body");
   if (!body) return;
@@ -17,8 +26,10 @@ function renderCompat() {
   body.innerHTML = COMPAT_DATA.map(
     (row) => `
     <tr data-status="${row.status}" data-game="${row.game.toLowerCase()}">
-      <td class="compat-game">${row.game}</td>
+      <td class="compat-game">${compatShot(row)}<span>${row.game}</span></td>
       <td><span class="tag ${TAG_CLASS[row.status]}">${I18n.t("status." + row.status)}</span></td>
+      <td class="compat-fps">${compatFps(row, "intel")}</td>
+      <td class="compat-fps">${compatFps(row, "amd")}</td>
       <td class="compat-notes">${row.notes[lang] || row.notes.en}</td>
       <td class="compat-build">${row.build}</td>
     </tr>`

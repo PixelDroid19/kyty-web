@@ -191,9 +191,9 @@ const COMPAT_DATA = [
     game: "Worms Armageddon: Anniversary Edition",
     status: "playable",
     build: "main @ 7181434",
-    fps: { intel: "60", amd: "60 (wrong colours)" },
+    fps: { intel: "60", amd: "60" },
     shot: "screenshots/worms.jpg",
-    notes: { en: "Matches play at a locked 60 fps on Intel. On AMD the terrain colours are wrong (open).", es: "Partidas a 60 fps fijos en Intel. En AMD los colores del terreno son incorrectos (abierto)." },
+    notes: { en: "Matches play at a locked 60 fps on both hosts; maps are randomly generated.", es: "Partidas a 60 fps fijos en ambos equipos; los mapas se generan al azar." },
   },
   {
     id: "voidterrarium",

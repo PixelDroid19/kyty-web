@@ -82,6 +82,19 @@
 .compat-table tbody tr:last-child td { border-bottom: none; }
 
 .compat-game { font-weight: 600; font-size: 16.5px; font-family: var(--font-display); }
+.compat-game span { vertical-align: middle; }
+.compat-shot { display: inline-block; vertical-align: middle; margin-right: 12px; }
+.compat-shot img {
+  width: 96px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: block;
+}
+.compat-fps { font-family: var(--font-mono); font-size: 13px; white-space: nowrap; }
+.compat-rig { margin-top: 14px; text-align: center; color: var(--faint); font-size: 13px; }
+.compat-table-wrap { overflow-x: auto; }
 .compat-notes { color: var(--dim); font-size: 14.5px; }
 .compat-build { font-family: var(--font-mono); font-size: 12px; color: var(--faint); white-space: nowrap; }
 
